@@ -1,0 +1,33 @@
+# Other
+target
+overlays
+work
+.gradle
+schema
+build
+classes
+server/.db
+out
+SimpleTest.java
+
+#Allure
+.allure
+
+#IDEA Files
+.idea
+*.iml
+*.ipr
+
+#Eclipse files
+*.settings
+*.classpath
+*.project
+*.pydevproject
+
+#Node
+node
+node_modules
+npm-debug.log
+
+#Mac OS stuff
+.DS_Store

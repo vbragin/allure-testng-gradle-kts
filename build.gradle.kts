@@ -1,15 +1,17 @@
-import io.qameta.allure.gradle.AllureExtension
+
+tasks.withType(Wrapper::class) {
+    gradleVersion = "8.5"
+}
 
 plugins {
     java
-    maven
-    id("io.qameta.allure") version "2.8.1"
+    id("io.qameta.allure") version "2.12.0"
 }
 
 group "io.qameta.allure.examples"
-version 1.3
+version 2.0
 
-val allureVersion = "2.13.6"
+val allureVersion = "2.20.0"
 val testngVersion = "6.14.3"
 
 tasks.withType(JavaCompile::class) {
@@ -17,25 +19,18 @@ tasks.withType(JavaCompile::class) {
     targetCompatibility = "${JavaVersion.VERSION_1_8}"
 }
 
-tasks {
-    compileJava {
-        options.encoding = "UTF-8"
-    }
-    compileTestJava {
-        options.encoding = "UTF-8"
-    }
+tasks.compileJava {
+    options.encoding = "UTF-8"
+    options.compilerArgs.add("-parameters")
 }
 
-configure<AllureExtension> {
-    autoconfigure = true
-    aspectjweaver = true
-    version = allureVersion
+tasks.compileTestJava {
+    options.encoding = "UTF-8"
+    options.compilerArgs.add("-parameters")
+}
 
-    clean = true
+allure {
 
-    useTestNG {
-        version = allureVersion
-    }
 }
 
 tasks.withType(Test::class) {
